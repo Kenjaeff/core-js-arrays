@@ -285,8 +285,13 @@ function distinct(arr) {
  *    createNDimensionalArray(4, 2) => [[[[0, 0], [0, 0]], [[0, 0], [0, 0]]], [[[0, 0], [0, 0]], [[0, 0], [0, 0]]]]
  *    createNDimensionalArray(1, 1) => [0]
  */
-function createNDimensionalArray(/* n, size */) {
-  throw new Error('Not implemented');
+// 16
+function createNDimensionalArray(n, size) {
+  return n === 1
+    ? Array(size).fill(0)
+    : Array(size)
+        .fill(0)
+        .map(() => createNDimensionalArray(n - 1, size));
 }
 
 /**
@@ -300,8 +305,14 @@ function createNDimensionalArray(/* n, size */) {
  *    flattenArray(['a', ['b', ['c', 'd'], 'e'], 'f']) => ['a', 'b', 'c', 'd', 'e', 'f']
  *    flattenArray([1, 2, 3, 4]) => [1, 2, 3, 4]
  */
-function flattenArray(/* nestedArray */) {
-  throw new Error('Not implemented');
+// 17
+function flattenArray(nestedArray) {
+  return nestedArray.reduce((a, current) => {
+    return [
+      ...a,
+      ...(Array.isArray(current) ? flattenArray(current) : [current]),
+    ];
+  }, []);
 }
 
 /**
@@ -317,8 +328,9 @@ function flattenArray(/* nestedArray */) {
  *   selectMany([[1, 2], [3, 4], [5, 6]], (x) => x) =>   [ 1, 2, 3, 4, 5, 6 ]
  *   selectMany(['one','two','three'], (x) => x.split('')) =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-function selectMany(/* arr, childrenSelector */) {
-  throw new Error('Not implemented');
+// 18
+function selectMany(arr, childrenSelector) {
+  return arr.flatMap(childrenSelector);
 }
 
 /**
@@ -334,8 +346,14 @@ function selectMany(/* arr, childrenSelector */) {
  *   calculateBalance([ [ 10, 8 ], [ 1, 5 ] ])  => (10 - 8) + (1 - 5) = 2 + -4 = -2
  *   calculateBalance([]) => 0
  */
-function calculateBalance(/* arr */) {
-  throw new Error('Not implemented');
+// 19
+function calculateBalance(arr) {
+  let balance = 0;
+  balance = arr.reduce((a, [income, expense]) => {
+    return a + (income - expense);
+  }, balance);
+
+  return balance;
 }
 
 /**
@@ -350,8 +368,14 @@ function calculateBalance(/* arr */) {
  *    createChunks(['a', 'b', 'c', 'd', 'e'], 2) => [['a', 'b'], ['c', 'd'], ['e']]
  *    createChunks([10, 20, 30, 40, 50], 1) => [[10], [20], [30], [40], [50]]
  */
-function createChunks(/* arr, chunkSize */) {
-  throw new Error('Not implemented');
+// 20
+function createChunks(arr, chunkSize) {
+  const chunks = [];
+  for (let i = 0; i < arr.length; i += chunkSize) {
+    const chunk = arr.slice(i, i + chunkSize);
+    chunks.push(chunk);
+  }
+  return chunks;
 }
 
 /**
