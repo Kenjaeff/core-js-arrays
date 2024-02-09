@@ -370,12 +370,13 @@ function calculateBalance(arr) {
  */
 // 20
 function createChunks(arr, chunkSize) {
-  const chunks = [];
-  for (let i = 0; i < arr.length; i += chunkSize) {
-    const chunk = arr.slice(i, i + chunkSize);
-    chunks.push(chunk);
+  if (arr.length <= 0) {
+    return [];
   }
-  return chunks;
+  const chunk = arr.slice(0, chunkSize);
+  const rest = arr.slice(chunkSize);
+
+  return [chunk, ...createChunks(rest, chunkSize)];
 }
 
 /**
@@ -390,8 +391,9 @@ function createChunks(arr, chunkSize) {
  *    generateOdds(2) => [ 1, 3 ]
  *    generateOdds(5) => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds(/* len */) {
-  throw new Error('Not implemented');
+// 21
+function generateOdds(length) {
+  return Array.from({ length }, (_, index) => index * 2 + 1);
 }
 
 /**
@@ -406,8 +408,17 @@ function generateOdds(/* len */) {
  *   getElementByIndices(['one','two','three'], [2]) => 'three'  (arr[2])
  *   getElementByIndices([[[ 1, 2, 3]]], [ 0, 0, 1 ]) => 2        (arr[0][0][1])
  */
-function getElementByIndices(/* arr, indices */) {
-  throw new Error('Not implemented');
+// 22
+function getElementByIndices(arr, indices) {
+  if (indices.length === 0) {
+    return arr;
+  }
+  const [currentIndex, ...restIndices] = indices;
+  const nextArray = arr[currentIndex];
+
+  return nextArray === undefined
+    ? undefined
+    : getElementByIndices(nextArray, restIndices);
 }
 
 /**
@@ -422,8 +433,9 @@ function getElementByIndices(/* arr, indices */) {
  *  getFalsyValuesCount([ -1, 'false', null, 0 ]) => 2
  *  getFalsyValuesCount([ null, undefined, NaN, false, 0, '' ]) => 6
  */
-function getFalsyValuesCount(/* arr */) {
-  throw new Error('Not implemented');
+// 23
+function getFalsyValuesCount(arr) {
+  return arr.filter((value) => !value).length;
 }
 
 /**
@@ -444,8 +456,11 @@ function getFalsyValuesCount(/* arr */) {
  *                              [0,0,0,1,0],
  *                              [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+// 24
+function getIdentityMatrix(n) {
+  return Array.from({ length: n }, (_, i) =>
+    Array.from({ length: n }, (__, j) => +(i === j))
+  );
 }
 
 /**
@@ -459,8 +474,11 @@ function getIdentityMatrix(/* n */) {
  *    getIndicesOfOddNumbers([2, 4, 6, 8, 10]) => []
  *    getIndicesOfOddNumbers([11, 22, 33, 44, 55]) => [0, 2, 4]
  */
-function getIndicesOfOddNumbers(/* numbers */) {
-  throw new Error('Not implemented');
+// 25
+function getIndicesOfOddNumbers(numbers) {
+  return numbers
+    .map((number, index) => (number % 2 !== 0 ? index : null))
+    .filter((index) => index !== null);
 }
 
 /**
@@ -473,8 +491,11 @@ function getIndicesOfOddNumbers(/* numbers */) {
  *    getHexRGBValues([ 0, 255, 16777215]) => [ '#000000', '#0000FF', '#FFFFFF' ]
  *    getHexRGBValues([]) => []
  */
-function getHexRGBValues(/* arr */) {
-  throw new Error('Not implemented');
+// 26
+function getHexRGBValues(arr) {
+  return arr.map(
+    (number) => `#${number.toString(16).toUpperCase().padStart(6, '0')}`
+  );
 }
 
 /**
