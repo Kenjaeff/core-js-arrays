@@ -200,8 +200,9 @@ function insertItem(arr, item, index) {
  *    getHead([ 'a', 'b', 'c', 'd'], 3) => [ 'a', 'b', 'c' ]
  *    getHead([ 'a', 'b', 'c', 'd'], 0) => []
  */
-function getHead(/* arr, n */) {
-  throw new Error('Not implemented');
+// 11
+function getHead(arr, n) {
+  return arr.slice(0, n);
 }
 
 /**
@@ -215,8 +216,9 @@ function getHead(/* arr, n */) {
  *    getTail([ 'a', 'b', 'c', 'd'], 3) => [ 'b', 'c', 'd' ]
  *    getTail([ 'a', 'b', 'c', 'd'], 0) => []
  */
-function getTail(/* arr, n */) {
-  throw new Error('Not implemented');
+// 12
+function getTail(arr, n) {
+  return n >= arr.length ? [...arr] : arr.slice(arr.length - n);
 }
 
 /**
@@ -231,8 +233,9 @@ function getTail(/* arr, n */) {
  *    doubleArray([0, 1, 2, 3, 4, 5]) => [0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5]
  *    doubleArray([]) => []
  */
-function doubleArray(/* arr */) {
-  throw new Error('Not implemented');
+// 13
+function doubleArray(arr) {
+  return arr.concat(arr);
 }
 
 /**
@@ -246,8 +249,9 @@ function doubleArray(/* arr */) {
  *    toStringList([1, 2, 3, 4, 5]) => '1,2,3,4,5'
  *    toStringList(['rock', 'paper', 'scissors']) => 'rock,paper,scissors'
  */
-function toStringList(/* arr */) {
-  throw new Error('Not implemented');
+// 14
+function toStringList(arr) {
+  return arr.map(String).join(',');
 }
 
 /**
@@ -262,8 +266,10 @@ function toStringList(/* arr */) {
  *   distinct([ 1, 1, 2, 2, 3, 3, 4, 4]) => [ 1, 2, 3, 4]
  *   distinct([]) => []
  */
-function distinct(/* arr */) {
-  throw new Error('Not implemented');
+// 15
+function distinct(arr) {
+  const unique = new Set(arr);
+  return [...unique];
 }
 
 /**
